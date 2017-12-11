@@ -1,0 +1,44 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-08.
+ -->
+
+
+        <aura:component description="FCC_Products" controller="FCC_ProductsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+            <aura:attribute name="products" type="Product2[]"/>
+            <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+            <aura:registerEvent name="change" type="c:RatingChangeEvent"/>
+
+            <div class="slds">
+                <ul class="slds slds-scrollable--y">
+                        <lightning:card class="slds-text-align_center darkCard">
+                            <aura:set attribute="title">
+
+                                   <h2 style="color:white;">Lista Produktów</h2>
+                            </aura:set>
+                            <aura:iteration items="{!v.products}" var="prod">
+                                <lightning:layout horizontalAlign="space" multipleRows="true">
+                                    <lightning:layoutItem size="7" padding="horizontal-small" >
+                                        <c:FCC_ProductItem product="{!prod}"/>
+                                    </lightning:layoutItem>
+                                </lightning:layout>
+
+
+
+                                <!--<h2>{!prod.Name}</h2>-->
+                                 <!--<span>-->
+                                     <!--attachment obrazek start-->
+                                     <!--<img class="mythumbnail" src="{!'https://marcinlukasiak-dev-ed.lightning.force.com/servlet/servlet.FileDownload?file=00P0O00001DY9iiUAD'}" width="100" height="100"/>-->
+                                      <!--attachment obrazek stop-->
+                                     <!--<c:Rating colorOn="#64E000"  rating="2"/>-->
+
+
+                                     <!--<img src="{!prod.DisplayUrl}" style="height:300px; width:200px"/>-->
+                                 <!--</span>-->
+                                <!--<p>{!prod.Description}</p>-->
+                                <!--<lightning:button >Add to Basket</lightning:button>-->
+                            </aura:iteration>
+                        </lightning:card>
+
+                </ul>
+            </div>
+        </aura:component>

@@ -1,0 +1,28 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-05.
+ -->
+
+<aura:component description="FC_SearchPartner" implements="flexipage:availableForAllPageTypes" controller="FC_AccountController">
+
+
+    <aura:registerEvent name="accountsLoaded" type="c:FC_AccountsLoaded"/>
+    <aura:registerEvent name="isShowComp" type="c:FC_isShowComponent"/>
+    <aura:attribute name="searchWorld" type="String" default=""/>
+    <lightning:card iconName="utility:search" class="slds-m-around_medium">
+        <aura:set attribute="title">
+            Search Partner
+        </aura:set>
+
+            <lightning:layout horizontalAlign="space" >
+                <lightning:layoutItem size="10" padding="horizontal-small" >
+                    <ui:inputText class="field" value="{!v.searchWorld}" updateOn="keyup"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="2" padding=" horizontal-small">
+                    <lightning:button variant="brand" label="Submit" onclick="{! c.searchPartner }" />
+                </lightning:layoutItem>
+            </lightning:layout>
+
+
+
+    </lightning:card>
+</aura:component>

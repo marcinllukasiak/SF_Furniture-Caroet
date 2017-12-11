@@ -1,0 +1,26 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-11.
+ -->
+
+<aura:component description="FCC_MinBasket" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="products" type="Product2[]"/>
+    <aura:handler event="c:FCC_ProductToBasket" action="{!c.addProductToBasket}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:card iconName="standard:orders" class="slds-m-around_medium">
+        <aura:set attribute="title">
+            Basket
+        </aura:set>
+        <aura:set attribute="actions">
+            <lightning:button class="mybutton" >Order</lightning:button>
+        </aura:set>
+
+        <ul>
+            <aura:iteration items="{!v.products}" var="prod">
+                <c:FCC_minBasketItem product="{!prod}"/>
+            </aura:iteration>
+        </ul>
+
+    </lightning:card>
+
+</aura:component>

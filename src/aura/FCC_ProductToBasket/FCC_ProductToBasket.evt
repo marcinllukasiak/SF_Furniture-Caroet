@@ -1,0 +1,7 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-11.
+ -->
+
+<aura:event type="APPLICATION" description="FCC_ProductToBasket">
+    <aura:attribute name="product" Type="Product2"/>
+</aura:event>

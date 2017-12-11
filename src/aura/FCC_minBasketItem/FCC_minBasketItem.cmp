@@ -1,0 +1,12 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-11.
+ -->
+
+<aura:component description="FCC_minBasketItem" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" >
+    <aura:attribute name="product" type="Product2"/>
+
+    <li>
+        {!v.product.Name}
+    </li>
+
+</aura:component>

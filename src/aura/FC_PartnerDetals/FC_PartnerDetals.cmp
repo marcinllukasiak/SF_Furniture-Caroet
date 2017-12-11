@@ -1,0 +1,145 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-05.
+ -->
+
+<aura:component description="FC_PartnerDetals" implements="flexipage:availableForAllPageTypes" >
+
+    <aura:registerEvent name="accountEdit" type="c:FC_AccountEdit"/>
+    <aura:handler event="c:FC_AccountSelected" action="{!c.accountLoad}"/>
+    <aura:handler event="c:FC_MapClickAccount" action="{!c.accountLoad}"/>
+    <aura:handler event="c:FC_PaintItem" action="{!c.paintItemHadler}"/>
+    <aura:handler event="c:FC_isShowComponent" action="{!c.isShowComponent}"/>
+
+    <aura:handler event="c:FC_showCreatePartner" action="{!c.showCreatePartner}"/>
+    <!--<aura:handler event="c:FC_AccountEdit" action="{!c.accountEdit}"/>-->
+
+
+    <aura:attribute name="record" type="Account"/>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="truthy" type="Boolean" default="false"/>
+    <aura:attribute name="isDetales" type="Boolean" default="false"/>
+    <aura:attribute name="isCreate" type="Boolean" default="false"/>
+    <aura:attribute name="recordSaveErrorss" type="String" default=""/>
+
+    <aura:if isTrue="{!v.recordId != null}">
+        <!-- Load record in EDIT mode -->
+        <force:recordData aura:id="recordLoader"
+                          recordId="{!v.recordId}"
+                          layoutType="FULL"
+                          targetRecord="{!v.record}"
+                          targetError="{!v.recordSaveError}"
+                          mode="EDIT"
+                          recordUpdated="{!c.handleRecordUpdated}" />
+    </aura:if>
+
+
+
+            <aura:if isTrue="{!v.isDetales}">
+                <div id="cardDetals">
+                    <lightning:card iconName="standard:user" class="slds-m-around_medium">
+                        <aura:set attribute="title">
+                            Partner Detals
+                        </aura:set>
+                        <aura:set attribute="actions">
+                            <lightning:button class="mybutton" onclick="{!c.goToEdit}" >Edit</lightning:button>
+                            <lightning:button onclick="{!c.goToObject}" class="mybutton" >Show more</lightning:button>
+                        </aura:set>
+
+
+                        <div class="slds-p-horizontal--small">
+
+                            <div class="slds-box">
+                                <div class="slds-form-element__control">
+                                    <div>
+                                        <span class="slds-form-element__label">Name</span>
+                                    </div>
+                                    <lightning:formattedText  title="Name" value="{!v.record.fields.Name.value}" />
+
+                                </div>
+
+                                <br/>
+                                <div>
+                                    <span class="slds-form-element__label">Active</span>
+                                </div>
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedText  title="Active" value="{!v.record.fields.Active__c.value}" />
+
+                                </div>
+
+                                <br/>
+                                <div>
+                                    <span class="slds-form-element__label">City</span>
+                                </div>
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedText title="City" value="{!v.record.fields.City__c.value}" />
+
+                                </div>
+
+                                <br/>
+                                <div>
+                                    <span class="slds-form-element__label">Phone</span>
+                                </div>
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedText title="Phone" value="{!v.record.fields.Phone.value}" />
+
+                                </div>
+
+                                <br/>
+                                <div>
+                                    <span class="slds-form-element__label">Fax</span>
+                                </div>
+                                <div class="slds-form-element__control">
+                                    <lightning:formattedText title="Fax" value="{!v.record.fields.Fax.value}" />
+
+                                </div>
+
+
+                                <lightning:formattedText title="Ownership" value="{!v.record.fields.Ownership.value}" />
+                            </div>
+
+                        </div>
+
+
+
+                    </lightning:card>
+                </div>
+
+            </aura:if>
+            <p></p>
+
+            <aura:if isTrue="{!v.truthy}">
+                <div class="Edit Contact">
+                    <lightning:card iconName="action:edit" class="slds-m-around_medium" title="Edit Contact">
+
+
+                        <div class="slds-p-horizontal--small">
+                            <lightning:input label="Name" value="{!v.record.fields.Name.value}"/>
+                            <lightning:input label="Active" value="{!v.record.fields.Active__c.value}"/>
+                            <lightning:input label="City" value="{!v.record.fields.City__c.value}"/>
+                            <lightning:input label="Phone" value="{!v.record.fields.Phone.value}"/>
+                            <lightning:input label="Fax" value="{!v.record.fields.Fax.value}"/>
+                            <br/>
+                            <lightning:button label="Save Contact" variant="brand" onclick="{!c.saveAccount}" />
+                        </div>
+                    </lightning:card>
+                </div>
+
+                <!-- Display error message -->
+                <aura:if isTrue="{!not(empty(v.recordSaveError))}">
+                    <div class="recordSaveError">
+                            {!v.recordSaveError}
+                    </div>
+                </aura:if>
+            </aura:if>
+
+            <aura:if isTrue="{!v.isCreate}">
+                <c:FC_NewAccount />
+            </aura:if>
+
+
+
+
+
+
+
+</aura:component>

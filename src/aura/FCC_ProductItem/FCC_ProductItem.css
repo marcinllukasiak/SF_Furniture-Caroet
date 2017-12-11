@@ -1,0 +1,20 @@
+/**
+ * Created by Marcin Łukasiak on 2017-12-11.
+ */
+.THIS.paddingCard {
+
+           padding: 15px;
+           margin-bottom: 15px;
+}
+.THIS .nameItem {
+    font-size: 30px;
+}
+.THIS .price{
+       font-size: 25px;
+       color: orange;
+       font-weight: bold;
+}
+.THIS{
+    max-width: 500px;
+
+}

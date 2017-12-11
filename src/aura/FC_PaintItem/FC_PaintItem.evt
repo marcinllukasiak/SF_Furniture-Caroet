@@ -1,0 +1,7 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-07.
+ -->
+
+<aura:event type="APPLICATION" description="FC_PaintItem">
+    <aura:attribute name="location" Type="String"/>
+</aura:event>

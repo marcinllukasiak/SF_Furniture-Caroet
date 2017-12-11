@@ -1,0 +1,51 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-09.
+ -->
+
+<aura:component description="FC_NewAccount" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome, force:hasRecordId">
+        <aura:registerEvent name="accountSelected"  type="c:FC_AccountSelected"/>
+        <aura:registerEvent name="showCreatePartner" type="c:FC_showCreatePartner"/>
+        <aura:registerEvent name="addPartner" type="c:FC_AddPartner"/>
+        <aura:attribute name="newAccount" type="Object"/>
+        <aura:attribute name="simpleNewAccount" type="Object"/>
+        <aura:attribute name="newAccountError" type="String"/>
+        <ltng:require styles=""
+                      scripts="/resource/geocode"
+                      afterScriptsLoaded="{!c.jsLoaded}" />
+        <force:recordData aura:id="accountRecordCreator"
+                          layoutType="FULL"
+                          targetRecord="{!v.newAccount}"
+                          targetFields ="{!v.simpleNewAccount}"
+                          targetError="{!v.newAccountError}"
+        />
+
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+        <!-- Display the new contact form -->
+        <div class="Create Partner">
+            <lightning:card iconName="action:new_contact" title="Create Partner" class="slds-m-around_medium">
+                <aura:set attribute="actions">
+                    <lightning:button class="mybutton" onclick="{!c.close}" >Close</lightning:button>
+                </aura:set>
+                <div class="slds-p-horizontal--small">
+                    <lightning:input aura:id="accountField" label="Name" value="{!v.newAccount.fields.Name.value}" required="true"/>
+                    <lightning:input aura:id="accountField" label="City" value="{!v.newAccount.fields.City__c.value}" required="true"/>
+                    <lightning:input aura:id="accountField" label="Latitude" value="{!v.newAccount.fields.Location__Latitude__s.value}" required="true"/>
+                    <lightning:input aura:id="accountField" label="Longitudes" value="{!v.newAccount.fields.Location__Longitude__s.value}" required="true"/>
+                    <lightning:input aura:id="accountField" label="Phone" value="{!v.newAccount.fields.Phone.value}"/>
+                    <lightning:input aura:id="accountField" label="Fax" value="{!v.newAccount.fields.Fax.value}"/>
+
+
+                    <br/>
+                    <lightning:button label="Save Contact" variant="brand" onclick="{!c.saveAccount}"/>
+                </div>
+            </lightning:card>
+        </div>
+
+        <!-- Display Lightning Data Service errors -->
+        <aura:if isTrue="{!not(empty(v.newAccountError))}">
+            <div class="recordError">
+                    {!v.recordError}</div>
+        </aura:if>
+
+    </aura:component>

@@ -1,0 +1,9 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-07.
+ -->
+
+<aura:component description="FC_AccountLocationHeder" implements="flexipage:availableForAllPageTypes">
+
+    <lightning:card iconName="standard:address" class="slds-m-around_medium" title="Partners Location">
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,9 @@
+<aura:component >
+	<aura:registerEvent name="accountSelected"  type="c:FC_AccountSelected"/>
+    <aura:attribute name="account" type="Account"/>
+
+    <li class="itemListToPaint" id="{!v.account.Location__Latitude__s+', '+v.account.Location__Longitude__s}">
+        <a onclick="{!c.accountSelected}">{!v.account.Name}</a>
+    </li>
+
+</aura:component>

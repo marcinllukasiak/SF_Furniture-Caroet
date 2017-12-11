@@ -1,0 +1,55 @@
+<apex:page docType="html-5.0" id="updateMeetingPage" standardController="Lead" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false">
+    <html>
+        <head>
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <apex:slds />
+        </head>
+        
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Lead" fields="Id"/>
+    </apex:remoteObjects>
+        
+        <body>
+            <div class="slds-scope">
+                <div class="myapp">
+            <p class="slds-text-align_center">Update status to Meeting?</p>
+                    
+                    <div class="slds-grid slds-wrap">
+              <div class="slds-col slds-size--1-of-2">
+                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small slds-theme_default" 
+                            onclick="setToMeeting()">OK</div> 
+              </div>
+              <div class="slds-col slds-size--1-of-2">
+                <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around--x-small slds-theme_default" 
+                            onclick="closeModal()">Back</div>
+              </div>
+            </div>
+                    
+                    </div>
+            </div>
+        </body>
+    <script src='/canvas/sdk/js/publisher.js'></script>
+    <script>
+        
+    var LeadId = "{!Lead.Id}";
+    var LeadStatus = "{!Lead.Status}";
+    function setToMeeting() {
+        var lead = new SObjectModel.Lead();
+        if(LeadStatus == 'Meeting'){
+            alert('Current status is already on Meeting');
+        } else if (LeadStatus == 'Open'){
+            lead.update([LeadId], {Status: 'Meeting'});
+            Sfdc.canvas.publisher.publish({ name: "publisher.close", payload: {refresh:"true", successMessage: 'Status changed!'}});
+            Sfdc.canvas.publisher.publish({name : 'publisher.refresh', payload :{feed:true}});
+        } else {
+            alert('Make sure your status is Open before changing to Meeting');
+        }
+    }
+        
+    function closeModal() {
+        Sfdc.canvas.publisher.publish({ name: "publisher.close", payload: {refresh:"true"}});
+    }
+    </script>
+    </html>
+</apex:page>

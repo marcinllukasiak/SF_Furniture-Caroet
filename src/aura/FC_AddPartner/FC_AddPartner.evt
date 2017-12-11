@@ -1,0 +1,7 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-10.
+ -->
+
+<aura:event type="APPLICATION" description="FC_AddPartner">
+    <aura:attribute name="account" Type="Account"/>
+</aura:event>

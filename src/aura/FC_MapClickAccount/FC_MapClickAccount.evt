@@ -1,0 +1,7 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-08.
+ -->
+
+<aura:event type="APPLICATION" description="FC_MapClickAccount">
+    <aura:attribute name="account" Type="Account"/>
+</aura:event>

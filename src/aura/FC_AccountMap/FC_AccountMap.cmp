@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForAllPageTypes"  >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+	<aura:handler event="c:FC_AccountsLoaded" action="{!c.accountsLoaded}"/>
+    <aura:handler event="c:FC_AccountSelected" action="{!c.accountSelected}"/>
+    <aura:registerEvent name="paintItem"  type="c:FC_PaintItem"/>
+    <aura:attribute name="map" type="Object"/>
+    <aura:attribute name="markers" type="Object"/>
+    <aura:attribute name="markersAll" type="Object"/>
+    <aura:attribute name="objectEvent" type="Object"/>
+    <aura:attribute name="isEvent" type="Boolean" default="true"/>
+    <aura:handler name="change" value="{!v.objectEvent}" action="{!c.objectEventChange}"/>
+
+
+    <ltng:require styles="/resource/leaflet/leaflet.css"
+        scripts="/resource/leaflet/leaflet.js"
+        afterScriptsLoaded="{!c.jsLoaded}" />
+
+
+    <lightning:card iconName="standard:address" class="slds-m-around_medium" >
+            <aura:set attribute="title">
+                Partners Location
+            </aura:set>
+        <aura:set attribute="actions">
+            <lightning:button class="mybutton" onclick="{!c.showAll}" >Show All</lightning:button>
+        </aura:set>
+
+        <div id="map" class="mapSize"></div>
+    </lightning:card>
+
+
+</aura:component>

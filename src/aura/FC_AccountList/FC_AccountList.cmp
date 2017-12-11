@@ -1,0 +1,32 @@
+<aura:component controller="FC_AccountController" implements="flexipage:availableForAllPageTypes" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:FC_AccountsLoaded" action="{!c.accountsLoaded}"/>
+    <aura:handler event="c:FC_AccountEdit" action="{!c.updateList}"/>
+
+    <aura:handler event="c:FC_AddPartner" action="{!c.handlerAddPartner}"/>
+    <aura:handler event="c:FC_PaintItem" action="{!c.paintList}"/>
+
+    <aura:registerEvent name="accountSelectedBack" type="c:FC_AccountSelected"/>
+	<aura:registerEvent name="accountsLoaded" type="c:FC_AccountsLoaded"/>
+    <aura:registerEvent name="showCreatePartner" type="c:FC_showCreatePartner"/>
+
+    <aura:registerEvent name="mapClickAccount" type="c:FC_MapClickAccount"/>
+    <aura:attribute name="accounts" type="Account[]"/>
+
+    <lightning:card iconName="standard:contact_list" class="slds-m-around_medium">
+        <aura:set attribute="title">
+           Partner List:
+        </aura:set>
+        <aura:set attribute="actions">
+            <lightning:button class="mybutton" onclick="{!c.addPartner}" >New Partner</lightning:button>
+        </aura:set>
+
+
+            <ul>
+                <aura:iteration items="{!v.accounts}" var="account">
+                    <c:FC_AccountListItem account="{!account}"/>
+                </aura:iteration>
+            </ul>
+    </lightning:card>
+
+</aura:component>

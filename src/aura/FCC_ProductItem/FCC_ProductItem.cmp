@@ -1,0 +1,89 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-11.
+ -->
+
+
+<aura:component description="FCC_ProductItem" controller="FCC_ProductsController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="product" type="Product2"/>
+    <aura:attribute name="attachmentID" type="Id"/>
+    <aura:attribute name="priceProduct" type="Integer"/>
+    <aura:registerEvent name="productToBasket"  type="c:FCC_ProductToBasket"/>
+
+    <!--<li class="itemProduct">-->
+
+
+        <!--<a onclick="{!c.productSelected}">{!v.product.Name}</a>-->
+    <!--</li>-->
+
+
+        <lightning:card class="slds-text-align_center paddingCard">
+            <aura:set attribute="title">
+                <lightning:layout horizontalAlign="space" >
+                    <lightning:layoutItem size="12" padding="horizontal-small" >
+                        <lightning:formattedText class="nameItem" title="Name" value="{!v.product.Name}" />
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </aura:set>
+            <lightning:layout horizontalAlign="space" >
+                <lightning:layoutItem size="6" padding="horizontal-small" >
+                    <img class="mythumbnail" src="{!'https://marcinlukasiak-dev-ed.lightning.force.com/servlet/servlet.FileDownload?file='+ v.attachmentID}" width="200" height="200"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="6" padding=" horizontal-small">
+                    <lightning:layout multipleRows="true" verticalAlign="center" >
+                        <lightning:layoutItem size="12" padding=" verticalAlign-small">
+                            <c:Rating colorOn="#00A1E0"  rating="2"/>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="12" padding="verticalAlign-small" >
+                            <ui:outputText class="price" value="{!v.priceProduct}"/><span class="price">€</span>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem size="12" padding=" verticalAlign-small">
+                            <lightning:button iconName="utility:add" onclick="{!c.addToBasket}">Add to Basket</lightning:button>
+                        </lightning:layoutItem>
+
+                    </lightning:layout>
+
+
+                    <!--<ui:outputText class="price" value="{!v.priceProduct}"/>-->
+                    <!--<p> {!v.priceProduct} </p>-->
+                    <!--<lightning:button iconName="utility:add">Add to Basket</lightning:button>-->
+                </lightning:layoutItem>
+            </lightning:layout>
+
+            <!--<lightning:layout verticalAlign="center" >-->
+                <!--<lightning:layoutItem class="lBorder" size="6" padding="horizontal-small" >-->
+                    <!--<img class="mythumbnail" src="{!'https://marcinlukasiak-dev-ed.lightning.force.com/servlet/servlet.FileDownload?file='+ v.attachmentID}" width="200" height="200"/>-->
+                <!--</lightning:layoutItem>-->
+                <!--<lightning:layoutItem class="lBorder" size="6" padding=" horizontal-small">-->
+                   <!---->
+                    <!--<p> {!v.priceProduct} </p>-->
+                    <!--<lightning:button >Add to Basket</lightning:button>-->
+                <!--</lightning:layoutItem>-->
+            <!--</lightning:layout>-->
+
+        </lightning:card>
+
+
+
+
+    <!--<lightning:layout verticalAlign="center" >-->
+        <!--<lightning:layoutItem class="lBorder" size="3" padding="horizontal-small" >-->
+            <!--<img class="mythumbnail" src="{!'https://marcinlukasiak-dev-ed.lightning.force.com/servlet/servlet.FileDownload?file='+ v.attachmentID}" width="100" height="100"/>-->
+        <!--</lightning:layoutItem>-->
+        <!--<lightning:layoutItem class="lBorder" size="3" padding=" horizontal-small">-->
+            <!--<div class="slds-form-element__control">-->
+                <!--<div>-->
+                    <!--<span class="slds-form-element__label">Name</span>-->
+                <!--</div>-->
+                <!--<lightning:formattedText  title="Name" value="{!v.product.Name}" />-->
+            <!--</div>-->
+        <!--</lightning:layoutItem>-->
+        <!--<lightning:layoutItem class="lBorder" size="3" padding=" horizontal-small">-->
+            <!--&lt;!&ndash;<c:Rating colorOn="#00A1E0"  rating="2"/>&ndash;&gt;-->
+                <!--{!v.priceProduct}-->
+        <!--</lightning:layoutItem>-->
+        <!--<lightning:layoutItem class="lBorder" size="3" padding=" horizontal-small">-->
+            <!--<lightning:button >Add to Basket</lightning:button>-->
+        <!--</lightning:layoutItem>-->
+    <!--</lightning:layout>-->
+</aura:component>

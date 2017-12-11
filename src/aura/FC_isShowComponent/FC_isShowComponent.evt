@@ -1,0 +1,7 @@
+<!--
+ - Created by Marcin Łukasiak on 2017-12-09.
+ -->
+
+<aura:event type="APPLICATION" description="FC_isShowComponent">
+    <aura:attribute name="isShow" Type="Boolean"/>
+</aura:event>
